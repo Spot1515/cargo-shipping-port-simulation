@@ -11,8 +11,20 @@ pygame.display.set_caption("Cargo Ship Port Simulation")
 
 
 # Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
+white = (255, 255, 255)
+black = (0, 0, 0)
+red = (255, 0, 0)
+
+
+# Vehical properties
+vehicale_x = 100
+vehicale_y = 270
+vehicale_width = 50
+vehicale_height = 30
+vehicale_speed = 1
+
+
+
 
 # main loop
 
@@ -22,9 +34,20 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill(WHITE)
+    if vehicale_x > screen_width:
+        vehicale_x = 0
 
-    pygame.draw.rect(screen, BLACK, (100, 250, 600, 100))
+    vehicale_x += vehicale_speed
+
+    screen.fill(white)
+
+    pygame.draw.rect(screen, black, (100, 250, 600, 100))
+
+    pygame.draw.rect(screen, red, (vehicale_x, vehicale_y, vehicale_width, vehicale_height))
+
+
+
+
 
     pygame.display.flip()
 
