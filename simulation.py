@@ -15,13 +15,20 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
 
+# 2 lane road properties
+road_x = 100
+road_y = 100
+road_width = 500
+road_hight = 17
+
+
 
 # Vehical properties
-vehicale_x = 100
-vehicale_y = 270
-vehicale_width = 50
-vehicale_height = 30
-vehicale_speed = 1
+vehicale_x = road_x
+vehicale_y = road_y + (road_hight //2) - 6
+vehicale_width = 14
+vehicale_height = 6
+vehicale_speed = .1
 
 
 
@@ -34,14 +41,17 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    if vehicale_x > screen_width:
-        vehicale_x = 0
+    #if vehicale_x > screen_width:
+    #    vehicale_x = 0
 
     vehicale_x += vehicale_speed
 
+    if vehicale_x + vehicale_width > road_x + road_width:
+        vehicale_x = road_x + road_width - vehicale_width
+
     screen.fill(white)
 
-    pygame.draw.rect(screen, black, (100, 250, 600, 100))
+    pygame.draw.rect(screen, black, (road_x, road_y, road_width, road_hight))
 
     pygame.draw.rect(screen, red, (vehicale_x, vehicale_y, vehicale_width, vehicale_height))
 
